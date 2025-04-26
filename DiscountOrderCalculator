@@ -1,0 +1,21 @@
+public class DiscountOrderCalculator implements OrderCalculator {
+    private final OrderCalculator calculator;
+    private final double discountRate;
+
+    public DiscountOrderCalculator(OrderCalculator calculator, double discountRate) {
+        this.calculator = calculator;
+        this.discountRate = discountRate;
+    }
+
+    @Override
+    public void calculateTotal(double price, int quantity) {
+        double discountedPrice = price * (1 - discountRate);
+        calculator.calculateTotal(discountedPrice, quantity);
+    }
+}
+
+// Usage:
+OrderCalculator discountedCalculator = new DiscountOrderCalculator(
+    new BasicOrderCalculator(), 
+    0.1 // 10% discount
+);
