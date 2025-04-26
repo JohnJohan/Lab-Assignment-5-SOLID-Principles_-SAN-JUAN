@@ -1,0 +1,30 @@
+public class OrderTest {
+    public static void main(String[] args) {
+        // Create dependencies
+        OrderCalculator calculator = new BasicOrderCalculator();
+        OrderPlacer placer = new BasicOrderPlacer();
+        InvoiceGenerator invoiceGenerator = new PdfInvoiceGenerator();
+        NotificationSender notificationSender = new EmailNotificationSender();
+
+        // Create order processor with dependencies
+        OrderProcessor processor = new OrderProcessor(
+            calculator, 
+            placer, 
+            invoiceGenerator, 
+            notificationSender
+        );
+
+        // Process order
+        processor.processOrder(
+            10.0, 
+            2, 
+            "John Doe", 
+            "123 Main St",
+            "order_123.pdf",
+            "johndoe@example.com"
+        );
+
+        // Can also use individual components separately
+        calculator.calculateTotal(15.0, 3);
+    }
+}
