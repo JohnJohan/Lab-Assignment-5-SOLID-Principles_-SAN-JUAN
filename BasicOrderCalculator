@@ -1,0 +1,28 @@
+public class BasicOrderCalculator implements OrderCalculator {
+    @Override
+    public void calculateTotal(double price, int quantity) {
+        double total = price * quantity;
+        System.out.println("Order total: $" + total);
+    }
+}
+
+public class BasicOrderPlacer implements OrderPlacer {
+    @Override
+    public void placeOrder(String customerName, String address) {
+        System.out.println("Order placed for " + customerName + " at " + address);
+    }
+}
+
+public class PdfInvoiceGenerator implements InvoiceGenerator {
+    @Override
+    public void generateInvoice(String fileName) {
+        System.out.println("PDF Invoice generated: " + fileName);
+    }
+}
+
+public class EmailNotificationSender implements NotificationSender {
+    @Override
+    public void sendEmailNotification(String email) {
+        System.out.println("Email notification sent to: " + email);
+    }
+}
